@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
+import Cart from '../components/Cart'
 import Skus from '../components/Products/Skus'
 
 const AdvancedExamplePage = () => (
@@ -11,7 +12,9 @@ const AdvancedExamplePage = () => (
     <SEO title="Advanced Example" />
     <h1>This is the advanced example</h1>
     <h2>With multiple products and easy cart functionality</h2>
-    <Skus />
+    <Cart>
+      <Skus />
+    </Cart>
     <Link to="/">Go back to the easy example</Link>
   </Layout>
 )
