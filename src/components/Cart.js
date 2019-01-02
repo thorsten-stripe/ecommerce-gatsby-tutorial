@@ -8,7 +8,13 @@ const Cart = class extends React.Component {
   }
 
   componentDidMount() {
-    // TODO get from localstorage
+    // Get existing cart from localstorage if present.
+    const existingCart = JSON.parse(
+      localStorage.getItem('stripe_checkout_items')
+    )
+    if (existingCart && existingCart.length) {
+      this.setState({ cart: existingCart })
+    }
   }
 
   getCart() {
@@ -29,10 +35,8 @@ const Cart = class extends React.Component {
       updatedCart = [...updatedCart, { sku: newItem, quantity: 1 }]
     }
     this.setState({ cart: updatedCart })
-    setTimeout(() => {
-      console.log(this.state.cart)
-    }, 200)
-    // TODO update localstorage
+    // Store the cart in the localStorage.
+    localStorage.setItem('stripe_checkout_items', JSON.stringify(updatedCart))
   }
 
   render() {
