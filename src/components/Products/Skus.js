@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
-// import Checkout from '../checkout'
 import SkuCard from './SkuCard'
 
 const conatinerStyles = {
@@ -8,6 +7,7 @@ const conatinerStyles = {
   flexDirection: 'row',
   flexWrap: 'wrap',
   justifyContent: 'space-between',
+  padding: '1rem 0 1rem 0',
 }
 
 export default props => (
@@ -33,7 +33,6 @@ export default props => (
     `}
     render={({ skus }) => (
       <div style={conatinerStyles}>
-        {/* <Checkout {...props} /> */}
         {skus.edges.map(({ node: sku }) => (
           <SkuCard {...props} key={sku.id} sku={sku} />
         ))}

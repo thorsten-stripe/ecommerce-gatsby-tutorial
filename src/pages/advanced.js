@@ -11,7 +11,7 @@ const AdvancedExamplePage = () => (
   <Layout>
     <SEO title="Advanced Example" />
     <h1>This is the advanced example</h1>
-    <h2>With multiple products and easy cart functionality</h2>
+    <h2>With multiple variants and easy cart functionality</h2>
     <Cart>
       <Skus />
     </Cart>

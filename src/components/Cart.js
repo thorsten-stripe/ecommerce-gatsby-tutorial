@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Checkout from './advancedCheckout'
+
 const Cart = class extends React.Component {
   state = {
     cart: [],
@@ -36,6 +38,7 @@ const Cart = class extends React.Component {
   render() {
     return (
       <div>
+        <Checkout cart={this.state.cart} />
         {React.cloneElement(this.props.children, {
           addToCart: this.addToCart.bind(this),
           cart: this.state.cart,
