@@ -9,3 +9,7 @@
 </h1>
 
 This is a Gatsby e-commerce example based on https://www.gatsbyjs.org/docs/ecommerce-tutorial/
+
+## 💫 Deploy
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/thorsten-stripe/ecommerce-gatsby-tutorial)
