@@ -11,13 +11,19 @@ const conatinerStyles = {
 }
 
 class Skus extends Component {
+  state = {
+    stripe: null,
+  }
+
   // Initialise Stripe.js with your publishable key.
   // You can find your key in the Dashboard:
   // https://dashboard.stripe.com/account/apikeys
-  state = {
-    stripe: window.Stripe('pk_test_qOUT7QyfVVOJlWXtnbzzZ9Tn', {
+  componentDidMount() {
+    const stripe = window.Stripe('pk_test_qOUT7QyfVVOJlWXtnbzzZ9Tn', {
       betas: ['checkout_beta_4'],
-    }),
+    })
+    console.log('setting stripe:', { stripe })
+    this.setState({ stripe })
   }
 
   render() {
