@@ -1,0 +1,2 @@
+[template.environment]
+  STRIPE_SECRET_KEY = "change to your Stripe secret key"
