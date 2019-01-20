@@ -39,8 +39,8 @@ const SkuCard = class extends React.Component {
     event.preventDefault()
     const { error } = await this.props.stripe.redirectToCheckout({
       items: [{ sku, quantity }],
-      successUrl: `http://localhost:8000/page-2/`,
-      cancelUrl: `http://localhost:8000/advanced`,
+      successUrl: `${window.location.origin}/page-2/`,
+      cancelUrl: `${window.location.origin}/advanced`,
     })
 
     if (error) {
