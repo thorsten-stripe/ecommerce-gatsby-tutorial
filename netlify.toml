@@ -14,5 +14,5 @@
   command = "npm run build"
 
 [template.environment]
-  STRIPE_PUBLIC_KEY = "Add your Stripe publishable key here: pk_test_xxx"
+  GATSBY_STRIPE_PUBLIC_KEY = "Add your Stripe publishable key here: pk_test_xxx"
   STRIPE_SECRET_KEY = "Add your Stripe secret key here: sk_test_xxx"
