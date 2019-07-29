@@ -19,9 +19,7 @@ class Skus extends Component {
   // You can find your key in the Dashboard:
   // https://dashboard.stripe.com/account/apikeys
   componentDidMount() {
-    const stripe = window.Stripe('pk_test_qOUT7QyfVVOJlWXtnbzzZ9Tn', {
-      betas: ['checkout_beta_4'],
-    })
+    const stripe = window.Stripe('pk_test_qOUT7QyfVVOJlWXtnbzzZ9Tn')
     console.log('setting stripe:', { stripe })
     this.setState({ stripe })
   }
