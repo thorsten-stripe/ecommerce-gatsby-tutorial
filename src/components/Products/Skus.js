@@ -30,7 +30,6 @@ class Skus extends Component {
         query={graphql`
           query SkusForProduct {
             skus: allStripeSku(
-              filter: { product: { id: { eq: "prod_EGl7ZnT96XrPf6" } } }
               sort: { fields: [price] }
             ) {
               edges {
