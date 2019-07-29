@@ -14,7 +14,7 @@ const IndexPage = () => (
     <p>Welcome to your new Gatsby e-commerce site.</p>
     <p>
       Follow{' '}
-      <a href="https://www.gatsbyjs.org/docs/ecommerce-tutorial/">
+      <a href="https://www.gatsbyjs.org/tutorial/ecommerce-tutorial/">
         this tutorial
       </a>{' '}
       to build your own.
