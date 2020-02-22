@@ -34,28 +34,28 @@ const formatPrice = (amount, currency) => {
   return numberFormat.format(price)
 }
 
-const redirectToCheckout = async (event, sku, stripePromise, quantity = 1) => {
-  event.preventDefault()
-  const stripe = await stripePromise
-  const { error } = await stripe.redirectToCheckout({
-    items: [{ sku, quantity }],
-    successUrl: `${window.location.origin}/page-2/`,
-    cancelUrl: `${window.location.origin}/advanced`,
-  })
-
-  if (error) {
-    console.warn('Error:', error)
-  }
-}
-
 const SkuCard = ({ sku, stripePromise }) => {
+  const redirectToCheckout = async (event, sku, quantity = 1) => {
+    event.preventDefault()
+    const stripe = await stripePromise
+    const { error } = await stripe.redirectToCheckout({
+      items: [{ sku, quantity }],
+      successUrl: `${window.location.origin}/page-2/`,
+      cancelUrl: `${window.location.origin}/advanced`,
+    })
+
+    if (error) {
+      console.warn('Error:', error)
+    }
+  }
+
   return (
     <div style={cardStyles}>
       <h4>{sku.attributes.name}</h4>
       <p>Price: {formatPrice(sku.price, sku.currency)}</p>
       <button
         style={buttonStyles}
-        onClick={event => redirectToCheckout(event, sku.id, stripePromise)}
+        onClick={event => redirectToCheckout(event, sku.id)}
       >
         BUY ME
       </button>
