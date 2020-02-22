@@ -26,8 +26,8 @@ const Checkout = class extends React.Component {
     event.preventDefault()
     const { error } = await this.stripe.redirectToCheckout({
       items: this.props.cart,
-      successUrl: `http://localhost:8000/page-2/`,
-      cancelUrl: `http://localhost:8000/advanced/`,
+      successUrl: `${window.location.origin}/page-2/`,
+      cancelUrl: `${window.location.origin}/advanced/`,
     })
 
     if (error) {
