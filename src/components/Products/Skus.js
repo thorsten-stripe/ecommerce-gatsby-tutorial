@@ -19,7 +19,7 @@ class Skus extends Component {
   // You can find your key in the Dashboard:
   // https://dashboard.stripe.com/account/apikeys
   componentDidMount() {
-    const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLIC_KEY)
+    const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
     this.setState({ stripe })
   }
 
@@ -28,9 +28,7 @@ class Skus extends Component {
       <StaticQuery
         query={graphql`
           query SkusForProduct {
-            skus: allStripeSku(
-              sort: { fields: [price] }
-            ) {
+            skus: allStripeSku(sort: { fields: [price] }) {
               edges {
                 node {
                   id

@@ -17,13 +17,13 @@ const Checkout = class extends React.Component {
   // You can find your key in the Dashboard:
   // https://dashboard.stripe.com/account/apikeys
   componentDidMount() {
-    this.stripe = window.Stripe('pk_test_jG9s3XMdSjZF9Kdm5g59zlYd')
+    this.stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
   }
 
   async redirectToCheckout(event) {
     event.preventDefault()
     const { error } = await this.stripe.redirectToCheckout({
-      items: [{ sku: 'sku_DjQJN2HJ1kkvI3', quantity: 1 }],
+      items: [{ sku: process.env.GATSBY_BUTTON_SKU_ID, quantity: 1 }],
       successUrl: `${window.location.origin}/page-2/`,
       cancelUrl: `${window.location.origin}/`,
     })
