@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import SkuCard from './SkuCard'
+import { loadStripe } from '@stripe/stripe-js'
 
 const conatinerStyles = {
   display: 'flex',
@@ -10,48 +11,36 @@ const conatinerStyles = {
   padding: '1rem 0 1rem 0',
 }
 
-class Skus extends Component {
-  state = {
-    stripe: null,
-  }
+const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
 
-  // Initialise Stripe.js with your publishable key.
-  // You can find your key in the Dashboard:
-  // https://dashboard.stripe.com/account/apikeys
-  componentDidMount() {
-    const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
-    this.setState({ stripe })
-  }
-
-  render() {
-    return (
-      <StaticQuery
-        query={graphql`
-          query SkusForProduct {
-            skus: allStripeSku(sort: { fields: [price] }) {
-              edges {
-                node {
-                  id
-                  currency
-                  price
-                  attributes {
-                    name
-                  }
+const Skus = () => {
+  return (
+    <StaticQuery
+      query={graphql`
+        query SkusForProduct {
+          skus: allStripeSku(sort: { fields: [price] }) {
+            edges {
+              node {
+                id
+                currency
+                price
+                attributes {
+                  name
                 }
               }
             }
           }
-        `}
-        render={({ skus }) => (
-          <div style={conatinerStyles}>
-            {skus.edges.map(({ node: sku }) => (
-              <SkuCard key={sku.id} sku={sku} stripe={this.state.stripe} />
-            ))}
-          </div>
-        )}
-      />
-    )
-  }
+        }
+      `}
+      render={({ skus }) => (
+        <div style={conatinerStyles}>
+          {skus.edges.map(({ node: sku }) => (
+            <SkuCard key={sku.id} sku={sku} stripePromise={stripePromise} />
+          ))}
+        </div>
+      )}
+    />
+  )
 }
 
 export default Skus
