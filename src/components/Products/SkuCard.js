@@ -34,35 +34,33 @@ const formatPrice = (amount, currency) => {
   return numberFormat.format(price)
 }
 
-const SkuCard = class extends React.Component {
-  async redirectToCheckout(event, sku, quantity = 1) {
-    event.preventDefault()
-    const { error } = await this.props.stripe.redirectToCheckout({
-      items: [{ sku, quantity }],
-      successUrl: `${window.location.origin}/page-2/`,
-      cancelUrl: `${window.location.origin}/advanced`,
-    })
+const redirectToCheckout = async (event, sku, stripePromise, quantity = 1) => {
+  event.preventDefault()
+  const stripe = await stripePromise
+  const { error } = await stripe.redirectToCheckout({
+    items: [{ sku, quantity }],
+    successUrl: `${window.location.origin}/page-2/`,
+    cancelUrl: `${window.location.origin}/advanced`,
+  })
 
-    if (error) {
-      console.warn('Error:', error)
-    }
+  if (error) {
+    console.warn('Error:', error)
   }
+}
 
-  render() {
-    const sku = this.props.sku
-    return (
-      <div style={cardStyles}>
-        <h4>{sku.attributes.name}</h4>
-        <p>Price: {formatPrice(sku.price, sku.currency)}</p>
-        <button
-          style={buttonStyles}
-          onClick={event => this.redirectToCheckout(event, sku.id)}
-        >
-          BUY ME
-        </button>
-      </div>
-    )
-  }
+const SkuCard = ({ sku, stripePromise }) => {
+  return (
+    <div style={cardStyles}>
+      <h4>{sku.attributes.name}</h4>
+      <p>Price: {formatPrice(sku.price, sku.currency)}</p>
+      <button
+        style={buttonStyles}
+        onClick={event => redirectToCheckout(event, sku.id, stripePromise)}
+      >
+        BUY ME
+      </button>
+    </div>
+  )
 }
 
 export default SkuCard

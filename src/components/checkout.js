@@ -1,4 +1,5 @@
 import React from 'react'
+import { loadStripe } from '@stripe/stripe-js'
 
 const buttonStyles = {
   fontSize: '13px',
@@ -12,37 +13,28 @@ const buttonStyles = {
   letterSpacing: '1.5px',
 }
 
-const Checkout = class extends React.Component {
-  // Initialise Stripe.js with your publishable key.
-  // You can find your key in the Dashboard:
-  // https://dashboard.stripe.com/account/apikeys
-  componentDidMount() {
-    this.stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
-  }
+const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
 
-  async redirectToCheckout(event) {
-    event.preventDefault()
-    const { error } = await this.stripe.redirectToCheckout({
-      items: [{ sku: process.env.GATSBY_BUTTON_SKU_ID, quantity: 1 }],
-      successUrl: `${window.location.origin}/page-2/`,
-      cancelUrl: `${window.location.origin}/`,
-    })
+const redirectToCheckout = async event => {
+  event.preventDefault()
+  const stripe = await stripePromise
+  const { error } = await stripe.redirectToCheckout({
+    items: [{ sku: process.env.GATSBY_BUTTON_SKU_ID, quantity: 1 }],
+    successUrl: `${window.location.origin}/page-2/`,
+    cancelUrl: `${window.location.origin}/`,
+  })
 
-    if (error) {
-      console.warn('Error:', error)
-    }
+  if (error) {
+    console.warn('Error:', error)
   }
+}
 
-  render() {
-    return (
-      <button
-        style={buttonStyles}
-        onClick={event => this.redirectToCheckout(event)}
-      >
-        BUY MY BOOK
-      </button>
-    )
-  }
+const Checkout = () => {
+  return (
+    <button style={buttonStyles} onClick={redirectToCheckout}>
+      BUY MY BOOK
+    </button>
+  )
 }
 
 export default Checkout
