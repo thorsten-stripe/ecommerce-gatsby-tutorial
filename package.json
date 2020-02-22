@@ -1,24 +1,24 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "ecommerce-gatsby-tutorial",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "@thorwebdev",
   "dependencies": {
-    "gatsby": "^2.0.82",
-    "gatsby-image": "^2.0.20",
-    "gatsby-plugin-manifest": "^2.0.9",
-    "gatsby-plugin-offline": "^2.0.16",
-    "gatsby-plugin-react-helmet": "^3.0.2",
-    "gatsby-plugin-sharp": "^2.0.14",
-    "gatsby-plugin-stripe": "^1.2.0",
-    "gatsby-source-filesystem": "^2.0.8",
-    "gatsby-source-stripe": "^2.1.2",
-    "gatsby-transformer-sharp": "^2.1.8",
-    "prop-types": "^15.6.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-helmet": "^5.2.0"
+    "gatsby": "^2.19.19",
+    "gatsby-image": "^2.2.41",
+    "gatsby-plugin-manifest": "^2.2.41",
+    "gatsby-plugin-offline": "^2.2.10",
+    "gatsby-plugin-react-helmet": "^3.1.22",
+    "gatsby-plugin-sharp": "^2.4.5",
+    "gatsby-plugin-stripe": "^1.2.4",
+    "gatsby-source-filesystem": "^2.1.48",
+    "gatsby-source-stripe": "^2.2.2",
+    "gatsby-transformer-sharp": "^2.3.14",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1"
   },
   "keywords": [
     "gatsby"
@@ -32,13 +32,13 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "devDependencies": {
-    "prettier": "^1.15.2"
+    "prettier": "^1.19.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/thorsten-stripe/ecommerce-gatsby-tutorial/tree/cart-example"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/thorsten-stripe/ecommerce-gatsby-tutorial/issues"
   }
 }
