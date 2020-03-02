@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from 'gatsby'
 import SkuCard from './SkuCard'
 import { loadStripe } from '@stripe/stripe-js'
 
-const conatinerStyles = {
+const containerStyles = {
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -33,7 +33,7 @@ const Skus = () => {
         }
       `}
       render={({ skus }) => (
-        <div style={conatinerStyles}>
+        <div style={containerStyles}>
           {skus.edges.map(({ node: sku }) => (
             <SkuCard key={sku.id} sku={sku} stripePromise={stripePromise} />
           ))}
