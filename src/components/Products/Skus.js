@@ -14,9 +14,7 @@ export default props => (
   <StaticQuery
     query={graphql`
       query SkusForProduct {
-        skus: allStripeSku(
-          sort: { fields: [price] }
-        ) {
+        skus: allStripeSku(sort: { fields: [price] }) {
           edges {
             node {
               id
@@ -32,9 +30,15 @@ export default props => (
     `}
     render={({ skus }) => (
       <div style={conatinerStyles}>
-        {skus.edges.map(({ node: sku }) => (
-          <SkuCard {...props} key={sku.id} sku={sku} />
-        ))}
+        {skus.edges.map(({ node: sku }) => {
+          const newSku = {
+            sku: sku.id,
+            name: sku.attributes.name,
+            price: sku.price,
+            currency: sku.currency,
+          }
+          return <SkuCard key={sku.id} sku={newSku} />
+        })}
       </div>
     )}
   />

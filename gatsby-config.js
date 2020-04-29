@@ -5,12 +5,11 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `Gatsby E-Commerce Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Accept payments in your Gatsby site using Stripe Checkout.`,
     author: `@thorwebdev`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    'gatsby-plugin-stripe',
     {
       resolve: `gatsby-source-stripe`,
       options: {

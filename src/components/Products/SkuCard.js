@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
+
 const cardStyles = {
   display: 'flex',
   flexDirection: 'column',
@@ -24,51 +26,25 @@ const buttonStyles = {
   letterSpacing: '1.5px',
 }
 
-const formatPrice = (amount, currency) => {
-  let price = (amount / 100).toFixed(2)
-  let numberFormat = new Intl.NumberFormat(['en-US'], {
-    style: 'currency',
-    currency: currency,
-    currencyDisplay: 'symbol',
-  })
-  return numberFormat.format(price)
-}
+const SkuCard = ({ sku }) => {
+  const { addItem } = useShoppingCart()
 
-const SkuCard = class extends React.Component {
-  state = {
-    disabled: false,
-    buttonText: 'ADD TO CART',
-    paymentMessage: '',
-  }
-
-  resetButton() {
-    this.setState({ disabled: false, buttonText: 'ADD ME BABY ONE MORE TIME!' })
-  }
-
-  addToCart(event, skuId, quantity = 1) {
-    event.preventDefault()
-    this.setState({ disabled: true, buttonText: 'ADDED...' })
-    this.props.addToCart(skuId)
-    setTimeout(this.resetButton.bind(this), 500)
-  }
-
-  render() {
-    const sku = this.props.sku
-    return (
-      <div style={cardStyles}>
-        <h4>{sku.attributes.name}</h4>
-        <p>Price: {formatPrice(sku.price, sku.currency)}</p>
-        <button
-          style={buttonStyles}
-          onClick={event => this.addToCart(event, sku.id)}
-          disabled={this.state.disabled}
-        >
-          {this.state.buttonText}
-        </button>
-        {this.state.paymentMessage}
-      </div>
-    )
-  }
+  return (
+    <div style={cardStyles}>
+      <h4>{sku.name}</h4>
+      <p>
+        Price:{' '}
+        {formatCurrencyString({
+          value: parseInt(sku.price),
+          currency: sku.currency,
+          language: navigator.language,
+        })}
+      </p>
+      <button style={buttonStyles} onClick={() => addItem(sku)}>
+        ADD TO CART
+      </button>
+    </div>
+  )
 }
 
 export default SkuCard
