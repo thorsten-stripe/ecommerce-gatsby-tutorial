@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useShoppingCart } from 'use-shopping-cart'
 
@@ -15,6 +15,7 @@ const buttonStyles = {
 }
 
 const Cart = () => {
+  const [loading, setLoading] = useState(false)
   /* Gets the totalPrice and a method for redirecting to stripe */
   const {
     totalPrice,
@@ -30,8 +31,15 @@ const Cart = () => {
       <p>Total: {totalPrice()}</p>
 
       {/* Redirects the user to Stripe */}
-      <button style={buttonStyles} onClick={() => redirectToCheckout()}>
-        Checkout
+      <button
+        style={buttonStyles}
+        disabled={loading}
+        onClick={() => {
+          setLoading(true)
+          redirectToCheckout()
+        }}
+      >
+        {loading ? 'Loading...' : 'Checkout'}
       </button>
       <button style={buttonStyles} onClick={clearCart}>
         Clear cart
