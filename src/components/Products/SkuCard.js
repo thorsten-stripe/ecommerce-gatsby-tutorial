@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useShoppingCart, toCurrency } from 'use-shopping-cart'
+import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
 
 const cardStyles = {
   display: 'flex',
@@ -34,7 +34,7 @@ const SkuCard = ({ sku }) => {
       <h4>{sku.name}</h4>
       <p>
         Price:{' '}
-        {toCurrency({
+        {formatCurrencyString({
           value: parseInt(sku.price),
           currency: sku.currency,
           language: navigator.language,

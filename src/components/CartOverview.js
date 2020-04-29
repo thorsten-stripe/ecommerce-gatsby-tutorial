@@ -30,7 +30,7 @@ const Cart = () => {
       <p>Total: {totalPrice()}</p>
 
       {/* Redirects the user to Stripe */}
-      <button style={buttonStyles} onClick={redirectToCheckout}>
+      <button style={buttonStyles} onClick={() => redirectToCheckout()}>
         Checkout
       </button>
       <button style={buttonStyles} onClick={clearCart}>

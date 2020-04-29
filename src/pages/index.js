@@ -24,7 +24,7 @@ const CartExample = () => (
       successUrl={`${window.location.origin}/page-2/`}
       cancelUrl={`${window.location.origin}/`}
       currency="USD"
-      allowedCountries={['US', 'UK', 'CA']}
+      allowedCountries={['US', 'GB', 'CA']}
       billingAddressCollection={true}
     >
       <CartOverview />
