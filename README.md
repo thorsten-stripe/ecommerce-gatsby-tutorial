@@ -11,15 +11,17 @@
 This is a Gatsby e-commerce example based on https://www.gatsbyjs.org/tutorial/ecommerce-tutorial/
 
 ## Setup
-* First, you must enable client-only Checkout in your Stripe Dashboard: https://dashboard.stripe.com/account/checkout/settings
-* Next, create a product and SKU from the Stripe Dashboard: https://dashboard.stripe.com/test/products
+
+- First, you must enable client-only Checkout in your Stripe Dashboard: https://dashboard.stripe.com/account/checkout/settings
+- Next, create a product and price from the Stripe Dashboard: https://dashboard.stripe.com/test/products
 
 ### Run locally
-* `git clone https://github.com/thorsten-stripe/ecommerce-gatsby-tutorial.git`
-* Make a copy of the example .env file: `cp .env.example .env.development`
-* Add your Stripe API keys to the newly created `.env.development` file.
-* run `npm install`
-* run `gatsby develop`
+
+- `git clone https://github.com/thorsten-stripe/ecommerce-gatsby-tutorial.git`
+- Make a copy of the example .env file: `cp .env.example .env.development`
+- Add your Stripe API keys to the newly created `.env.development` file.
+- run `npm install`
+- run `gatsby develop`
 
 ### 💫 Deploy with Netlify
 
