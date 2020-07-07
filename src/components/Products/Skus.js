@@ -13,14 +13,19 @@ const conatinerStyles = {
 export default props => (
   <StaticQuery
     query={graphql`
-      query SkusForProduct {
-        skus: allStripeSku(sort: { fields: [price] }) {
+      query ProductPrices {
+        prices: allStripePrice(
+          filter: { active: { eq: true }, currency: { eq: "usd" } }
+          sort: { fields: [unit_amount] }
+        ) {
           edges {
             node {
               id
+              active
               currency
-              price
-              attributes {
+              unit_amount
+              product {
+                id
                 name
               }
             }
@@ -28,16 +33,16 @@ export default props => (
         }
       }
     `}
-    render={({ skus }) => (
+    render={({ prices }) => (
       <div style={conatinerStyles}>
-        {skus.edges.map(({ node: sku }) => {
+        {prices.edges.map(({ node: price }) => {
           const newSku = {
-            sku: sku.id,
-            name: sku.attributes.name,
-            price: sku.price,
-            currency: sku.currency,
+            sku: price.id,
+            name: price.product.name,
+            price: price.unit_amount,
+            currency: price.currency,
           }
-          return <SkuCard key={sku.id} sku={newSku} />
+          return <SkuCard key={price.id} sku={newSku} />
         })}
       </div>
     )}

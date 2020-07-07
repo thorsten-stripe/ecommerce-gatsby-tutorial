@@ -20,6 +20,7 @@ const CartExample = () => (
       <a href="https://use-shopping-cart.netlify.app/">use-shopping-cart</a>
     </h2>
     <CartProvider
+      mode="client-only"
       stripe={stripePromise}
       successUrl={`${window.location.origin}/page-2/`}
       cancelUrl={`${window.location.origin}/`}
